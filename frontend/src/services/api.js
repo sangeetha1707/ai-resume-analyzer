@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000';
+const BASE_URL = 'https://ai-resume-analyzer-backend-qn02.onrender.com';
 
 const apiClient = axios.create({
   baseURL: BASE_URL,
