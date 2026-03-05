@@ -8,7 +8,7 @@ from utils.resume_parser import extract_text_from_pdf, preprocess_text
 from utils.skill_matcher import analyze_match
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173", "http://127.0.0.1:5173"])
+CORS(app, origins="*")
 
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024  # 10MB max
 ALLOWED_EXTENSIONS = {'pdf'}
@@ -102,6 +102,10 @@ def parse_resume_only():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({"status": "awake"}), 200
 
 if __name__ == '__main__':
     print("🚀 AI Resume Analyzer API starting on http://localhost:5000")
